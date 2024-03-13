@@ -9,8 +9,6 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -18,9 +16,6 @@ func main() {
 	loglevel := flag.String("loglevel", logger.LOGLEVELWARNING, "enable debug mode for gin and log")
 	flag.Parse()
 
-	if !(*isDebug) {
-		gin.SetMode(gin.ReleaseMode)
-	}
 	banner()
 	config.CheckFile()                   // generate config file and exit if not exist
 	config.MustParse()                   // read config

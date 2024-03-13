@@ -7,3 +7,21 @@ const constUploadStatusEnd = "end-upload"
 //
 // TODO: remove this if detailed session and file management is needed
 const mockSID = "12345"
+
+const (
+	APIPatcher = "/patcher"
+)
+
+const (
+	APIMovie = "/movie"
+
+	APIServerStatus = APIMovie + "/server/status"
+
+	APIMovieSession       = APIMovie + "/sessions"
+	APIMovieSessionNew    = APIMovieSession + "/new"
+	APIMovieSessionManage = APIMovieSession + "/{sid}/videos/{vid}/{operation}"
+)
+
+const (
+	APIDedicatedMovieUpload = "/movie-upload/{filename}"
+)

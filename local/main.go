@@ -2,39 +2,34 @@ package local
 
 import (
 	"010-record-api/config"
-	"010-record-api/logger"
+	"010-record-api/utils"
 	"fmt"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
 )
 
 func New() http.Handler {
-	// TODO: replace from gin to go1.22 ServerMux, avoid jit assembler usage github.com/chenzhuoyu/iasm
+	// replace from gin to go1.22 ServerMux, avoid jit assembler usage github.com/chenzhuoyu/iasm
 	// f**k bytedance for adding this sh**.
-	// local := http.NewServeMux()
-	// local.Handle("POST /movie-upload/{filename}", MovieUploadContext)
-	local := gin.New()
-	local.Use(gin.RecoveryWithWriter(logger.GetWriter()))
+
+	local := http.NewServeMux()
 
 	// record api group
-	groupMovie := local.Group("/movie")
-	initRouterGroupMovie(groupMovie)
-
-	// handler for embedded web patcher
-	local.StaticFS("/patcher", http.FS(MustGetPatcher()))
+	initRouterGroupMovie(local)
 
 	// tell user way to access patcher
 	fmt.Printf("\tto access embedded patcher, go http://%s/patcher/\n\n", config.Config.ListenAddress)
 
-	// not setting this handler into group /movie
-	local.PUT("/movie-upload/:filename", MovieUploadContext)
+	// movie upload put request, not setting this handler into group /movie
+	local.HandleFunc(utils.RequestURL(http.MethodPut, APIDedicatedMovieUpload), MovieUploadContext)
+
+	// handler for embedded web patcher, refer to MustGetPatcher() for routing details
+	local.Handle(APIPatcher+"/", http.FileServerFS(MustGetPatcher()))
 
 	return local
 }
 
-func initRouterGroupMovie(group *gin.RouterGroup) {
-	group.GET("/server/status", MovieServerStatus)
-	group.POST("/sessions/new", MovieSessionNew)
-	group.POST("/sessions/:sid/videos/:vid/:operation", MovieUploadManagement)
+func initRouterGroupMovie(group *http.ServeMux) {
+	group.HandleFunc(utils.RequestURL(http.MethodGet, APIServerStatus), MovieServerStatus)
+	group.HandleFunc(utils.RequestURL(http.MethodPost, APIMovieSessionNew), MovieSessionNew)
+	group.HandleFunc(utils.RequestURL(http.MethodPost, APIMovieSessionManage), MovieUploadManagement)
 }
