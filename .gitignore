@@ -1,0 +1,13 @@
+# my configuration files
+.vscode
+.air.toml
+
+# temporary directories and files
+video/
+images/
+config.toml
+log.txt
+
+# executable files
+010-record-api
+010-record-api.exe
