@@ -66,7 +66,7 @@ go install github.com/bookqaq/010-record-api@latest
 
 #### asphyxia
 
-本文假设游戏，asphyxia与本程序均跑在<u>**同一台电脑**</u>上，且本程序生成的配置文件<u>**未被修改**</u>
+本文假设游戏，asphyxia与本程序均跑在**同一台电脑**上，且本程序生成的配置文件**未被修改**
 
 ##### 确认你的插件是否已经支持相关设置
 

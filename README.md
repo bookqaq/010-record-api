@@ -66,7 +66,7 @@ Refer https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screen
 
 #### Asphyxia
 
-Assume game, asphyxia and 010-record-api.exe are **<u>running on the same pc</u>**, and config file of 010-record-api.exe <u>**is not changed**</u>
+Assume game, asphyxia and 010-record-api.exe are **running on the same pc**, and config file of 010-record-api.exe **is not changed**
 
 ##### Check whether your plugin supports
 
@@ -109,4 +109,4 @@ Just submit your PRs, I'll check and reply.
 - Speed up the client upload speed by:
    - patch dll
    - implement direct file copy from RawPlayVideo
-- 010-record-proxy?
+- finish the proxy package?

@@ -5,9 +5,11 @@
 # temporary directories and files
 video/
 images/
+tmp/
 config.toml
 log.txt
 
 # executable files
 010-record-api
+010-record-api_tmp
 010-record-api.exe
