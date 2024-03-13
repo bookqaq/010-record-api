@@ -1,6 +1,7 @@
 package local
 
 import (
+	"010-record-api/config"
 	"010-record-api/logger"
 	"fmt"
 	"net/http"
@@ -9,15 +10,22 @@ import (
 )
 
 func New() http.Handler {
+	// TODO: replace from gin to go1.22 ServerMux, avoid jit assembler usage github.com/chenzhuoyu/iasm
+	// f**k bytedance for adding this sh**.
+	// local := http.NewServeMux()
+	// local.Handle("POST /movie-upload/{filename}", MovieUploadContext)
 	local := gin.New()
 	local.Use(gin.RecoveryWithWriter(logger.GetWriter()))
 
-	groupMovie := local.Group("/movie") // record api group
+	// record api group
+	groupMovie := local.Group("/movie")
 	initRouterGroupMovie(groupMovie)
 
+	// handler for embedded web patcher
 	local.StaticFS("/patcher", http.FS(MustGetPatcher()))
+
 	// tell user way to access patcher
-	fmt.Printf("\tto access embedded patcher, go http://your_ip:your_port/patcher/\n\n")
+	fmt.Printf("\tto access embedded patcher, go http://%s/patcher/\n\n", config.Config.ListenAddress)
 
 	// not setting this handler into group /movie
 	local.PUT("/movie-upload/:filename", MovieUploadContext)

@@ -1,3 +1,5 @@
+中文 | [English](./README.md) 
+
 # 阅读之前
 
 截止目前（2024.03），若想使用该工具激活录画功能，仍需要大量前置条件，请务必满足以下所有条件后再进行尝试：
@@ -30,15 +32,15 @@ go install github.com/bookqaq/010-record-api@latest
 
 1. 运行一次010-record-api.exe，运行完成后将在同级目录生成配置文件config.toml
 
-   ![image-20240312162953082](images/image-20240312162953082.png)
+   ![image-20240312162953082](https://github.com/bookqaq/010-record-api/blob/images/image-20240312162953082.png?raw=true)
 
 2. 使用记事本编辑config.toml，设置listen_address与upload_service_address，如果仅本地运行，则保留默认配置即可。
 
-   ![image-20240312170951686](images/image-20240312170951686.png)
+   ![image-20240313170201467](https://github.com/bookqaq/010-record-api/blob/images/image-20240313170201467.png?raw=true)
 
 3. 再次运行010-record-api.exe，此时工具应启动
 
-   ![image-20240312163453651](images/image-20240312163453651.png)
+   ![image-20240312163453651](https://github.com/bookqaq/010-record-api/blob/images/image-20240312163453651.png?raw=true)
 
 ## 配置本工具以外的必要项
 
@@ -58,7 +60,7 @@ go install github.com/bookqaq/010-record-api@latest
 
 2. 打开spicecfg.exe，选择 options 标签栏，在Graphics (common) 中勾选 Disable D3D9 Device Hook
 
-   ![image-20240312164557472](images/image-20240312164557472.png)
+   ![image-20240312164557472](https://github.com/bookqaq/010-record-api/blob/images/image-20240312164557472.png?raw=true)
 
 ### 配置xrpc服务器
 
@@ -70,7 +72,7 @@ go install github.com/bookqaq/010-record-api@latest
 
 启动氧无，在网页中选择左侧标签栏Plugins下的IIDX，如果右侧 Plugin Settings中有"Movie Upload URL"这一栏，则把值设置为图中所示即可，否则请看下方内容
 
-![image-20240312165724390](images/image-20240312165724390.png)
+![image-20240312165724390](https://github.com/bookqaq/010-record-api/blob/images/image-20240312165724390.png?raw=true)
 
 ##### 如何修改插件以支持
 
@@ -99,3 +101,5 @@ go install github.com/bookqaq/010-record-api@latest
 Just submit your PRs, I'll check and reply.
 
 # TODOs
+
+In README.md

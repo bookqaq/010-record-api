@@ -1,3 +1,5 @@
+[中文](./README-zh.md) | English
+
 # Before Reading
 
 Until now（2024.03）, if you want to use the recording feature in game, a bunch of requirements are needed:
@@ -30,15 +32,15 @@ or compile yourself
 
 1. run 010-record-api.exe once, a config file (config.toml) will be generated
 
-   ![image-20240312162953082](images/image-20240312162953082.png)
+   ![image-20240312162953082](https://github.com/bookqaq/010-record-api/blob/images/image-20240312162953082.png?raw=true)
 
 2. edit config.toml, set listen_address and upload_service_address if necessary. If you want to run it locally, then you can skip this step.
 
-   ![image-20240312170951686](images/image-20240312170951686.png)
+   ![image-20240312170951686](https://github.com/bookqaq/010-record-api/blob/images/image-20240313170201467.png?raw=true)
 
 3. run 010-record-api.exe again, service should start now
 
-   ![image-20240312163453651](images/image-20240312163453651.png)
+   ![image-20240312163453651](https://github.com/bookqaq/010-record-api/blob/images/image-20240312163453651.png?raw=true)
 
 ## Config Other Necessary Parts
 
@@ -58,7 +60,7 @@ Refer https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screen
 
 2. open spicecfg.exe, change toggle Disable D3D9 Device Hook (in Graphics (common), under options tab) to true  
 
-   ![image-20240312164557472](images/image-20240312164557472.png)
+   ![image-20240312164557472](https://github.com/bookqaq/010-record-api/blob/images/image-20240312164557472.png?raw=true)
 
 ### Config XRPC Server
 
@@ -70,7 +72,7 @@ Assume game, asphyxia and 010-record-api.exe are **<u>running on the same pc</u>
 
 run asphyxia, go to "IIDX" under Plugins. If "Movie Upload URL" appears in Plugin Settings, then your plugin support the feature.
 
-![image-20240312165724390](images/image-20240312165724390.png)
+![image-20240312165724390](https://github.com/bookqaq/010-record-api/blob/images/image-20240312165724390.png?raw=true)
 
 ##### If not support, How to edit your plugin
 
@@ -88,7 +90,7 @@ Really don't know what to do.
 
 Open http://localhost:4399/patcher/ in your browser, apply changes to your LDJ-010 version of bm2dx.dll
 
-Skip this step if your server region is Japan
+Skip this step if your server region is already Japan
 
 ## After gamestart
 
@@ -99,3 +101,12 @@ Check "動画" button on sunscreen. If it appears,  configuration is completed.
 Just submit your PRs, I'll check and reply.
 
 # TODOs
+
+- Replace gin (would bump go to 1.22)
+- Better video filename
+- Better in-memory movie upload instance manage
+- Fix report as VIRUS on my pc
+- Speed up the client upload speed by:
+   - patch dll
+   - implement direct file copy from RawPlayVideo
+- 010-record-proxy?

@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	isDebug := flag.Bool("debug", false, "enable debug mode for gin(http server) and log")
+	isDebug := flag.Bool("debug", false, "enable debug mode for http server and log")
 	loglevel := flag.String("loglevel", logger.LOGLEVELWARNING, "enable debug mode for gin and log")
 	flag.Parse()
 
@@ -34,10 +34,9 @@ func handleInterrupt() {
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
 	go func() {
-		for range c {
-			logger.Warning.Printf("receive ^C, bye!\n")
-			os.Exit(0)
-		}
+		<-c
+		logger.Warning.Printf("receive ^C, bye!\n")
+		os.Exit(0)
 	}()
 }
 
