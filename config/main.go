@@ -1,10 +1,11 @@
 package config
 
 import (
-	"010-record-api/utils"
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/bookqaq/010-record-api/utils"
 
 	"github.com/pelletier/go-toml/v2"
 )

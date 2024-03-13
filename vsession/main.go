@@ -1,10 +1,11 @@
 package vsession
 
 import (
-	"010-record-api/config"
 	"fmt"
 	"sync"
 	"time"
+
+	"github.com/bookqaq/010-record-api/config"
 )
 
 // TODO: clean outdated records with trigger

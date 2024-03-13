@@ -1,11 +1,12 @@
 package local
 
 import (
-	"010-record-api/logger"
-	"010-record-api/utils"
-	"010-record-api/vsession"
 	"net/http"
 	"strings"
+
+	"github.com/bookqaq/010-record-api/logger"
+	"github.com/bookqaq/010-record-api/utils"
+	"github.com/bookqaq/010-record-api/vsession"
 )
 
 // handler GET /movie/server/status

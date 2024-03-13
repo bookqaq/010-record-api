@@ -2,10 +2,11 @@
 package proxy
 
 import (
-	"010-record-api/config"
-	"010-record-api/local"
-	"010-record-api/logger"
 	"net/http"
+
+	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/local"
+	"github.com/bookqaq/010-record-api/logger"
 )
 
 func Start() {

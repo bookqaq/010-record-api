@@ -1,9 +1,10 @@
 package proxy
 
 import (
-	"010-record-api/logger"
-	"010-record-api/proxy/responsewriter"
 	"net/http"
+
+	"github.com/bookqaq/010-record-api/logger"
+	"github.com/bookqaq/010-record-api/proxy/responsewriter"
 )
 
 type localHandle struct {

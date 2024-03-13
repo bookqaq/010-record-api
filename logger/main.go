@@ -1,12 +1,13 @@
 package logger
 
 import (
-	"010-record-api/config"
-	"010-record-api/utils"
 	"fmt"
 	"io"
 	"log"
 	"os"
+
+	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/utils"
 )
 
 const (

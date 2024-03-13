@@ -1,14 +1,15 @@
 package main
 
 import (
-	"010-record-api/config"
-	"010-record-api/initialize"
-	"010-record-api/logger"
-	"010-record-api/proxy"
 	"flag"
 	"fmt"
 	"os"
 	"os/signal"
+
+	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/initialize"
+	"github.com/bookqaq/010-record-api/logger"
+	"github.com/bookqaq/010-record-api/proxy"
 )
 
 func main() {

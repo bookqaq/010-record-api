@@ -1,4 +1,4 @@
-module 010-record-api
+module github.com/bookqaq/010-record-api
 
 go 1.22.1
 

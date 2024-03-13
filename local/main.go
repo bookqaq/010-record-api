@@ -1,10 +1,11 @@
 package local
 
 import (
-	"010-record-api/config"
-	"010-record-api/utils"
 	"fmt"
 	"net/http"
+
+	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/utils"
 )
 
 func New() http.Handler {

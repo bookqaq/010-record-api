@@ -1,9 +1,10 @@
 package initialize
 
 import (
-	"010-record-api/config"
-	"010-record-api/logger"
 	"os"
+
+	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/logger"
 )
 
 func CreateRequiredDirectory() {

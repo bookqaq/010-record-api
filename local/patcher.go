@@ -1,9 +1,10 @@
 package local
 
 import (
-	"010-record-api/logger"
 	"embed"
 	"io/fs"
+
+	"github.com/bookqaq/010-record-api/logger"
 )
 
 // webpage that will be embedded into executable after compile.

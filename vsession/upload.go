@@ -1,10 +1,11 @@
 package vsession
 
 import (
-	"010-record-api/config"
 	"fmt"
 	"io"
 	"os"
+
+	"github.com/bookqaq/010-record-api/config"
 )
 
 func ReceiveUploadVideo(src io.Reader, fileName string) (int64, error) {
