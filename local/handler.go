@@ -11,7 +11,7 @@ import (
 
 // handler GET /movie/server/status
 func MovieServerStatus(w http.ResponseWriter, r *http.Request) {
-	utils.ResponseJSON(w, http.StatusOK, nil)
+	utils.ResponseJSON(w, http.StatusOK, map[string]any{})
 }
 
 // handler POST /movie/sessions/new
@@ -22,7 +22,7 @@ func MovieSessionNew(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// handler POST /movie/sessions/:sid/videos/:vid/:operation
+// handler POST /movie/sessions/{sid}/videos/{vid}/{operation}
 func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 	session := r.PathValue("session")
 	vid := r.PathValue("vid")
@@ -44,12 +44,12 @@ func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 	default:
 		utils.ResponseJSON(w, http.StatusBadRequest, map[string]any{
 			"status": "400",
-			"msg":    "test error msg",
+			"msg":    "invalid movie upload state",
 		})
 	}
 }
 
-// handler PUT /movie-upload/:filename
+// handler PUT /movie-upload/{filename}
 func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 	filename := r.PathValue("filename")
 	if strings.EqualFold(filename, "") {

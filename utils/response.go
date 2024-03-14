@@ -8,8 +8,6 @@ import (
 
 // wrapper for json response, body must be convertable to json when called
 func ResponseJSON(w http.ResponseWriter, code int, body any) {
-	w.WriteHeader(code)
-
 	data, err := json.Marshal(body)
 	if err != nil {
 		panic(fmt.Errorf("response json marshal failed: %w", err))
@@ -17,4 +15,5 @@ func ResponseJSON(w http.ResponseWriter, code int, body any) {
 
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
 	w.Write(data)
+	w.WriteHeader(code) // should set header before setting statusCode
 }

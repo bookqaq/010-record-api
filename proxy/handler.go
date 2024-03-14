@@ -12,7 +12,10 @@ type localHandle struct {
 }
 
 func (h *localHandle) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	wrapw := responsewriter.NewWrapped(w)
-	h.local.ServeHTTP(wrapw, r)
-	logger.Warning.Println(wrapw.StatusCode, r.Method, r.URL.Path)
+	defer proxyPanicRecovery(w, r.Method, r.URL.Path) // panic recovery
+
+	wrapw := responsewriter.NewWrapped(w) // response statusCode logger
+	h.local.ServeHTTP(wrapw, r)           // serve locally
+
+	logger.Warning.Println(wrapw.StatusCode, r.Method, r.URL.Path) // log
 }
