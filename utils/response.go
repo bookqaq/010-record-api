@@ -14,6 +14,6 @@ func ResponseJSON(w http.ResponseWriter, code int, body any) {
 	}
 
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
-	w.Write(data)
 	w.WriteHeader(code) // should set header before setting statusCode
+	w.Write(data)
 }

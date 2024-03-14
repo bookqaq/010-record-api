@@ -16,23 +16,46 @@ const (
 	LOGLEVELERROR   = "error"
 )
 
+const (
+	NUMLOGLEVELINFO = iota
+	NUMLOGLEVELWARNING
+	NUMLOGLEVELERROR
+)
+
 var Info, Warning, Error, Debug *log.Logger
 
 func New(openDebugLog bool, loglevel string) {
 	writer := GetWriter()
 
+	// decide loglevel
+	loglevelValue := NUMLOGLEVELWARNING
 	switch loglevel {
 	case LOGLEVELINFO:
-		Info = log.New(writer, "[Info] ", log.Ldate|log.Ltime|log.Lmsgprefix)
-		fallthrough
+		loglevelValue = NUMLOGLEVELINFO
 	case LOGLEVELWARNING:
-		Warning = log.New(writer, "[warning] ", log.Ldate|log.Ltime|log.Lmsgprefix)
-		fallthrough
+		loglevelValue = NUMLOGLEVELWARNING
 	case LOGLEVELERROR:
-		Error = log.New(writer, "[error] ", log.Ldate|log.Ltime|log.Lmsgprefix|log.Lshortfile)
+		loglevelValue = NUMLOGLEVELERROR
 	default:
 		utils.SimulatedPanic(fmt.Sprintf("invalid loglevel setting \"%s\", exiting...\n", loglevel))
 	}
+
+	// make sure writer and logger never be nil
+	// bad code, but cant find a better way to set loglevel
+	infoWriter, warningWriter, errorWriter := io.Discard, io.Discard, io.Discard
+	if loglevelValue >= NUMLOGLEVELINFO {
+		infoWriter = writer
+	}
+	if loglevelValue >= NUMLOGLEVELWARNING {
+		warningWriter = writer
+	}
+	if loglevelValue >= NUMLOGLEVELERROR {
+		errorWriter = writer
+	}
+
+	Info = log.New(infoWriter, "[Info] ", log.Ldate|log.Ltime|log.Lmsgprefix)
+	Warning = log.New(warningWriter, "[warning] ", log.Ldate|log.Ltime|log.Lmsgprefix)
+	Error = log.New(errorWriter, "[error] ", log.Ldate|log.Ltime|log.Lmsgprefix|log.Lshortfile)
 
 	// seperate debug log setting
 	debugWriter := io.Discard

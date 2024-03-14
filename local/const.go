@@ -23,5 +23,5 @@ const (
 )
 
 const (
-	APIDedicatedMovieUpload = "/movie-upload/{filename}"
+	APIDedicatedMovieUpload = "/movie-upload/{key}"
 )
