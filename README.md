@@ -30,7 +30,7 @@ or compile yourself
 
 ## Config The Tool
 
-1. run 010-record-api.exe once, a config file (config.toml) will be generated
+1. open 010-record-api.exe once, a config file (config.toml) will be generated
 
    ![image-20240312162953082](https://github.com/bookqaq/010-record-api/blob/images/image-20240312162953082.png?raw=true)
 
@@ -38,7 +38,7 @@ or compile yourself
 
    ![image-20240312170951686](https://github.com/bookqaq/010-record-api/blob/images/image-20240313170201467.png?raw=true)
 
-3. run 010-record-api.exe again, service should start now
+3. open 010-record-api.exe again, service should start now
 
    ![image-20240312163453651](https://github.com/bookqaq/010-record-api/blob/images/image-20240312163453651.png?raw=true)
 
@@ -70,7 +70,7 @@ Assume game, asphyxia and 010-record-api.exe are **running on the same pc**, and
 
 ##### Check whether your plugin supports
 
-run asphyxia, go to "IIDX" under Plugins. If "Movie Upload URL" appears in Plugin Settings, then your plugin support the feature.
+open asphyxia, go to "IIDX" under Plugins. If "Movie Upload URL" appears in Plugin Settings, then your plugin support the feature.
 
 ![image-20240312165724390](https://github.com/bookqaq/010-record-api/blob/images/image-20240312165724390.png?raw=true)
 
@@ -104,9 +104,9 @@ Just submit your PRs, I'll check and reply.
 
 - ~~Replace gin (would bump go to 1.22)~~
 - ~~Basic http response process(we lost these abilities after we dont use gin)~~
-- Better video filename
-- Better in-memory movie upload instance manage
-- Fix report as VIRUS on my pc
+- ~~Better video filename~~(sort of)
+- ~~Better in-memory movie upload instance manage~~
+- ~~Fix report as VIRUS on my pc~~(maybe fixed)
 - Speed up the client upload speed by:
    - patch dll
    - implement direct file copy from RawPlayVideo

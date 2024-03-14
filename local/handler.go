@@ -1,6 +1,8 @@
 package local
 
 import (
+	"encoding/json"
+	"io"
 	"net/http"
 	"strings"
 
@@ -11,7 +13,7 @@ import (
 
 // handler GET /movie/server/status
 func MovieServerStatus(w http.ResponseWriter, r *http.Request) {
-	utils.ResponseJSON(w, http.StatusOK, map[string]any{})
+	utils.ResponseJSON(w, http.StatusOK, nil)
 }
 
 // handler POST /movie/sessions/new
@@ -24,19 +26,51 @@ func MovieSessionNew(w http.ResponseWriter, r *http.Request) {
 
 // handler POST /movie/sessions/{sid}/videos/{vid}/{operation}
 func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
-	session := r.PathValue("session")
+	session := r.PathValue("sid")
 	vid := r.PathValue("vid")
 	operation := r.PathValue("operation")
 
+	key := vsession.GetKey(session, vid)
+
 	switch operation {
 	case constUploadStatusBegin:
+		requestBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			logger.Error.Println("movie upload begin body error:", err)
+			utils.ResponseJSON(w, http.StatusBadRequest, map[string]string{
+				"status": "400",
+				"msg":    "invalid parameter",
+			})
+			return
+		}
+
+		var body requestMovieSessionUploadBegin
+		if err := json.Unmarshal(requestBody, &body); err != nil {
+			logger.Error.Println("movie upload begin body error:", err)
+			utils.ResponseJSON(w, http.StatusBadRequest, map[string]string{
+				"status": "400",
+				"msg":    "invalid parameter",
+			})
+			return
+		}
+
+		// not using all value from request body.
+		// also implement a md5-based video management, with little session info
+		vsession.MapInfo.Store(key, vsession.Info{
+			ShopName:  body.EA3ShopName,
+			MD5Sum:    body.MD5Sum,
+			MusicId:   body.MusicId,
+			Timestamp: body.Timestamp,
+		})
+
 		// assign a video upload url path
 		utils.ResponseJSON(w, http.StatusOK, map[string]string{
 			"status": "200",
-			"url":    vsession.GetNewUploadURL(session, vid),
+			"url":    vsession.GetNewUploadURL(key),
 		})
 	case constUploadStatusEnd:
 		// dummy return
+		vsession.MapInfo.Delete(key)
 		utils.ResponseJSON(w, http.StatusOK, map[string]string{
 			"status":  "200",
 			"session": mockSID,
@@ -49,11 +83,11 @@ func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// handler PUT /movie-upload/{filename}
+// handler PUT /movie-upload/{key}
 func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
-	filename := r.PathValue("filename")
-	if strings.EqualFold(filename, "") {
-		logger.Error.Println("movie: bad filename", filename)
+	key := r.PathValue("key")
+	if strings.EqualFold(key, "") {
+		logger.Error.Println("movie: bad key", key)
 		utils.ResponseJSON(w, http.StatusBadRequest, map[string]any{
 			"status": "400",
 			"msg":    "invalid upload url destination",
@@ -61,9 +95,25 @@ func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// get key info
+	res, ok := vsession.MapInfo.Load(key)
+	if !ok {
+		logger.Error.Println("movie: key not exist", key)
+		utils.ResponseJSON(w, http.StatusBadRequest, map[string]any{
+			"status": "400",
+			"msg":    "invalid upload url destination",
+		})
+		return
+	}
+
+	// use keyinfo to generate filename
+	info := res.(vsession.Info)
+	filename := info.ToFileName()
+	logger.Warning.Println("receive video upload request:", filename)
+
 	written, err := vsession.ReceiveUploadVideo(r.Body, filename)
 	if err != nil {
-		logger.Info.Println("movie upload: ", err)
+		logger.Error.Println("movie upload: ", err)
 		utils.ResponseJSON(w, http.StatusInternalServerError, map[string]any{
 			"status": "500",
 			"msg":    err.Error(),
@@ -71,6 +121,6 @@ func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Info.Printf("movie %s: %d bytes written", filename, written)
+	logger.Info.Printf("movie %s done, %d bytes written", filename, written)
 	w.WriteHeader(http.StatusOK)
 }

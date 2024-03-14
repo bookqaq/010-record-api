@@ -8,8 +8,10 @@ import (
 	"github.com/bookqaq/010-record-api/config"
 )
 
+const videoFileExtensionName = ".mp4"
+
 func ReceiveUploadVideo(src io.Reader, fileName string) (int64, error) {
-	finalFilename := fmt.Sprintf("%s/%s", config.Config.VideoSaveDirectory, fileName)
+	finalFilename := fmt.Sprintf("%s/%s%s", config.Config.VideoSaveDirectory, fileName, videoFileExtensionName)
 
 	fp, err := os.OpenFile(finalFilename, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
