@@ -1,3 +1,5 @@
+name: go_build
+
 on:
   release:
     types: [created]
