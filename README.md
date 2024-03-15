@@ -18,9 +18,9 @@ lightning model video upload handler
 
 use 010-record-api.exe
 
-download executable at [release](https://github.com/bookqaq/010-record-api/releases/)（unusable）
+download executable at [release](https://github.com/bookqaq/010-record-api/releases/)
 
-if you have go installed, you could install via command line（unusable）
+if you have go installed, you could install via command line
 
 ```bash
 go install github.com/bookqaq/010-record-api@latest
