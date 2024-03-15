@@ -19,6 +19,6 @@ type Info struct {
 // info to filename
 func (info *Info) ToFileName() string {
 	// TODO: option to get music name from given music_data.bin
-	localTime := time.Unix(info.Timestamp, 0).Local().Format("20060102-15:04:05")
+	localTime := time.Unix(info.Timestamp, 0).Local().Format("20060102-150405")
 	return fmt.Sprintf("%s-%d-%s", localTime, info.MusicId, info.MD5Sum)
 }
