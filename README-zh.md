@@ -18,9 +18,9 @@ lightning model video upload handler
 
 使用包中的010-record-api.exe文件
 
-前往[release]()下载（目前不可用）
+前往[release](https://github.com/bookqaq/010-record-api/releases/)下载
 
-如果你有go，也可以使用命令安装（目前不可用）
+如果你有go，也可以使用命令安装
 
 ```bash
 go install github.com/bookqaq/010-record-api@latest
@@ -78,11 +78,11 @@ go install github.com/bookqaq/010-record-api@latest
 
 ~~打开你的iidx@asphyxia插件所在目录，进行以下修改~~
 
-摆了，直接使用我包中带的iidx@asphyxia，记得备份你使用的原插件
+摆了，自行找一个名字为iidx-asphyxia-v1.4.4_a4.zip的包，记得备份你使用的原插件
 
 #### 其他服务器
 
-本人只有氧无，其他服务器爱莫能助
+自行询问服务器管理
 
 ### 修改bm2dx.dll
 

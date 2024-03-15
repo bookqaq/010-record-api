@@ -18,7 +18,7 @@ lightning model video upload handler
 
 use 010-record-api.exe
 
-download executable at [release]()（unusable）
+download executable at [release](https://github.com/bookqaq/010-record-api/releases/)（unusable）
 
 if you have go installed, you could install via command line（unusable）
 
@@ -78,11 +78,11 @@ open asphyxia, go to "IIDX" under Plugins. If "Movie Upload URL" appears in Plug
 
 ~~open your iidx@asphyxia folder, change below~~
 
-just use the iidx@asphyxia/, remember to do a backup.
+find a zip named iidx-asphyxia-v1.4.4_a4.zip, remember to do a backup.
 
 #### Other server
 
-Really don't know what to do.
+Ask your server's owner.
 
 ### Config bm2dx.dll
 
