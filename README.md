@@ -94,7 +94,7 @@ Skip this step if your server region is already Japan
 
 ## After gamestart
 
-Check "動画" button on sunscreen. If it appears,  configuration is completed.
+Check "動画" button on subscreen. If it appears,  configuration is completed.
 
 # Contribution
 
