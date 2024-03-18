@@ -107,7 +107,7 @@ Just submit your PRs, I'll check and reply.
 - ~~Better video filename~~(sort of)
 - ~~Better in-memory movie upload instance manage~~
 - ~~Fix report as VIRUS on my pc~~(maybe fixed)
-- Speed up the client upload speed by:
-   - patch dll
-   - implement direct file copy from RawPlayVideo
+- ~~Speed up the client upload speed by:~~
+   - ~~patch dll~~
+   - ~~implement direct file copy from RawPlayVideo(wouldn't implement, for )~~
 - finish the proxy package?
