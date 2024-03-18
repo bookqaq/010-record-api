@@ -121,6 +121,6 @@ func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Info.Printf("movie %s done, %d bytes written", filename, written)
+	logger.Warning.Printf("movie %s done, %d bytes written", filename, written)
 	w.WriteHeader(http.StatusOK)
 }
