@@ -43,13 +43,13 @@ func New(openDebugLog bool, loglevel string) {
 	// make sure writer and logger never be nil
 	// bad code, but cant find a better way to set loglevel
 	infoWriter, warningWriter, errorWriter := io.Discard, io.Discard, io.Discard
-	if loglevelValue >= NUMLOGLEVELINFO {
+	if loglevelValue <= NUMLOGLEVELINFO {
 		infoWriter = writer
 	}
-	if loglevelValue >= NUMLOGLEVELWARNING {
+	if loglevelValue <= NUMLOGLEVELWARNING {
 		warningWriter = writer
 	}
-	if loglevelValue >= NUMLOGLEVELERROR {
+	if loglevelValue <= NUMLOGLEVELERROR {
 		errorWriter = writer
 	}
 
