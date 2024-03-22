@@ -18,6 +18,26 @@ func MovieServerStatus(w http.ResponseWriter, r *http.Request) {
 
 // handler POST /movie/sessions/new
 func MovieSessionNew(w http.ResponseWriter, r *http.Request) {
+	requestBody, err := io.ReadAll(r.Body)
+	if err != nil {
+		logger.Error.Println("movie new session body error:", err)
+		utils.ResponseJSON(w, http.StatusBadRequest, map[string]string{
+			"status": "400",
+			"msg":    "invalid parameter",
+		})
+		return
+	}
+
+	var body requestMovieSessionNew
+	if err := json.Unmarshal(requestBody, &body); err != nil {
+		logger.Error.Println("movie new session body error:", err)
+		utils.ResponseJSON(w, http.StatusBadRequest, map[string]string{
+			"status": "400",
+			"msg":    "invalid parameter",
+		})
+		return
+	}
+
 	utils.ResponseJSON(w, http.StatusOK, map[string]string{
 		"status":  "200",
 		"session": mockSID,
@@ -86,6 +106,15 @@ func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 // handler PUT /movie-upload/{key}
 func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 	key := r.PathValue("key")
+
+	// Content-Type verification
+	contentType := r.Header.Get("Content-Type")
+	if contentType != "video/mp4" {
+		logger.Error.Println("movie: malformed Content-Type: ", contentType, key)
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
 	if strings.EqualFold(key, "") {
 		logger.Error.Println("movie: bad key", key)
 		utils.ResponseJSON(w, http.StatusBadRequest, map[string]any{

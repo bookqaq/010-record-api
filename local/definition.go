@@ -1,5 +1,12 @@
 package local
 
+type requestMovieSessionNew struct {
+	Metadata struct {
+		Language string // language in game, jpn / kor / en
+		Region   string // maybe related to ea3-config
+	}
+}
+
 type requestMovieSessionUploadBegin struct {
 	EA3LocationId string
 	EA3ShopName   string
