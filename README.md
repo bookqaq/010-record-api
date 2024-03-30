@@ -86,7 +86,7 @@ Ask your server's owner.
 
 ### Config bm2dx.dll
 
-**only 2023-09-05 LDJ-010**
+**only LDJ-010 dll that can be found on public**
 
 Open http://localhost:4399/patcher/ in your browser, apply changes to your LDJ-010 version of bm2dx.dll
 
@@ -110,5 +110,9 @@ Just submit your PRs, I'll check and reply.
 - ~~Speed up the client upload speed by:~~
    - ~~patch dll~~
    - ~~implement direct file copy from RawPlayVideo(wouldn't implement)~~
-- Fix a bug where game would lag for seconds after video upload is done
+- "password" function in session
+- patch NVENC encoder config (such as bitrate)
 - finish the proxy package?
+
+# Won't Fix?
+- Fix a bug where game would lag for seconds after video upload is done (can't reproduce)

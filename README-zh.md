@@ -86,7 +86,7 @@ go install github.com/bookqaq/010-record-api@latest
 
 ### 修改bm2dx.dll
 
-**仅 2023-09-05 LDJ-010，其他的我没有**
+**仅支持公网有的 010 dll，其他的我没有**
 
 前往 http://localhost:4399/patcher/ ，像平常使用dll patcher一样，应用本patcher中唯一的选项，并替换你的 bm2dx.dll
 
