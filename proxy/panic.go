@@ -6,7 +6,7 @@ import (
 	"github.com/bookqaq/010-record-api/logger"
 )
 
-// go's panic and recovery, reveice panic, log and send StatusInternalServerError.
+// go's panic and recovery, receive panic, log and send StatusInternalServerError.
 // see https://go.dev/blog/defer-panic-and-recover
 func proxyPanicRecovery(w http.ResponseWriter, method, path string) {
 	if r := recover(); r != nil {
