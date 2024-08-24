@@ -2,13 +2,20 @@
 
 # Before Reading
 
-Until now（2024.03）, if you want to use the recording feature in game, a bunch of requirements are needed:
+Only github's README is the latest. Follow repo's instruction instead of one in package if possible.
+
+Until now（2024.08）, if you want to use the recording feature in game, a bunch of requirements are needed:
 
 1. Nvidia GPU, support NVENC
 2. LDJ-010 bm2dx.dll
-3. Proper ASIO Hardware/Software configuration（I use XONAR AE, but have seen FlexASIO config that claims to work fine）
-4. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen
-5. A proper implemented xrpc server（asphyxia for example）
+3. A proper implemented xrpc server（asphyxia for example）
+4. **Not Confirmed**: Proper ASIO Hardware/Software configuration（I use XONAR AE, but have seen FlexASIO config that claims to work fine）
+
+spice2x-24-08-03 have been released, which add support for NVENC hook. When updated, game can properly record with spice2x hook enabled. For more information, please check their page: https://github.com/spice2x/spice2x.github.io/wiki/IIDX-TDJ-Camera-Hook-and-Play-Recording
+
+If you're using version older than spice2x-24-08-03(not included), bemanitools or other tools, additional requirement should be met:
+
+1. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen
 
 # 010-record-api
 
@@ -20,7 +27,7 @@ use 010-record-api.exe
 
 download executable at [release](https://github.com/bookqaq/010-record-api/releases/)
 
-if you have go installed, you could install via command line
+if you have go installed, you could install via command line. Using go package to install latest version might not get the actual latest one. Please refer to github release for latest version.
 
 ```bash
 go install github.com/bookqaq/010-record-api@latest
@@ -54,11 +61,11 @@ this is just a hint
 
 Refer https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen#step-by-step-instructions
 
-### Config spice2x（Ignore this for bemanitools）
+### Config spice2x（Ignore this for bemanitools / spice2x-24-08-03 or later）
 
 1. Download spice2x-24-02-13 or newer than this, extract to your folder
 
-2. open spicecfg.exe, change toggle Disable D3D9 Device Hook (in Graphics (common), under options tab) to true  
+2. open spicecfg.exe, toggle Disable D3D9 Device Hook (in Graphics (common), under options tab) to ON (Option name might change, you could check whether parameter value contain "nod3d9devhook")
 
    ![image-20240312164557472](https://github.com/bookqaq/010-record-api/blob/images/image-20240312164557472.png?raw=true)
 
@@ -76,9 +83,7 @@ open asphyxia, go to "IIDX" under Plugins. If "Movie Upload URL" appears in Plug
 
 ##### If not support, How to edit your plugin
 
-~~open your iidx@asphyxia folder, change below~~
-
-find a zip named iidx-asphyxia-v1.4.4_a4.zip, remember to do a backup.
+find a zip named iidx-asphyxia-v1.4.4_a12.zip, remember to do a backup.
 
 #### Other server
 
@@ -86,11 +91,15 @@ Ask your server's owner.
 
 ### Config bm2dx.dll
 
-**only LDJ-010 dll that can be found on public**
-
 Open http://localhost:4399/patcher/ in your browser, apply changes to your LDJ-010 version of bm2dx.dll
 
 Skip this step if your server region is already Japan
+
+**only LDJ-010 dll that can be found on public**
+
+**”Disable Server Region Check for Premium Area Functions“ is currently works with Asphyxia only. If you use any other network service, DO NOT follow this guide. Follow your server's guide.**
+
+**If your server already support playvideo recording and not using 010-record-api, please notice that “Faster Video Upload“ may violate your server's rule. You SHOULD check whether your server is allowed to do so.**
 
 ## After gamestart
 
