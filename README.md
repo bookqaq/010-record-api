@@ -2,7 +2,7 @@
 
 # Before Reading
 
-Only github's README is the latest. Follow repo's instruction instead of one in package if possible.
+Only github's README is the latest. Follow repo's instruction instead of the one in package if possible.
 
 Until now（2024.08）, if you want to use the recording feature in game, a bunch of requirements are needed:
 
