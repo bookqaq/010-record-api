@@ -2,7 +2,7 @@ name: go_build
 
 on:
   release:
-    types: [created, published, prereleased]
+    types: [published]
 
 permissions:
     contents: write
