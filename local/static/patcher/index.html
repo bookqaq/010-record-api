@@ -8,6 +8,18 @@
     <script type="text/javascript">
         window.addEventListener("load", function() {
             new PatchContainer([
+                new Patcher("bm2dx.dll", "2024-10-09 (LDJ-010)", [
+                    {
+                        name: "Disable Server Region Check for Premium Area Functions (关闭副屏功能的服务器地域检测)",
+                        tooltip: "force activate functions (such as recording) for asphyxia and server with region other than 'JP'",
+                        patches: [{ offset: 0xa2b243, off: [0x75, 0x41], on: [0x90, 0x90]}],
+                    },
+                    {
+                        name: "Faster Video Uploads (更快的视频上传)",
+                        tooltip: "Expand InternetWriteFile() body chunk size to 0x3200000 - makes video upload put request 1000 times faster in theory (理论上使视频上传请求加快1000倍)",
+                        patches: [{ offset: 0xab674a, off: [0x41, 0xbe, 0x00, 0x32, 0x00, 0x00], on: [0x41, 0xbe, 0x00, 0x00, 0x20, 0x03]}],
+                    }
+                ]),
                 new Patcher("bm2dx.dll", "2024-08-26 (LDJ-010)", [
                     {
                         name: "Disable Server Region Check for Premium Area Functions (关闭副屏功能的服务器地域检测)",
