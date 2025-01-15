@@ -11,7 +11,7 @@ Until now（2024.08）, if you want to use the recording feature in game, a bunc
 3. A proper implemented xrpc server（asphyxia for example）
 4. **Not Confirmed**: Proper ASIO Hardware/Software configuration（I use XONAR AE, but have seen FlexASIO config that claims to work fine）
 
-spice2x-24-08-03 have been released, which add support for NVENC hook. When updated, game can properly record with spice2x hook enabled. For more information, please check their page: https://github.com/spice2x/spice2x.github.io/wiki/IIDX-TDJ-Camera-Hook-and-Play-Recording
+spice2x-24-08-03 have been released, which add support for NVENC hook. When updated, game can properly record with spice2x hook enabled. For more information, please check their page: [https://github.com/spice2x/spice2x.github.io/wiki/IIDX-TDJ-Camera-Hook-and-Play-Recording](https://github.com/spice2x/spice2x.github.io/wiki/IIDX-Play-Recording)
 
 If you're using version older than spice2x-24-08-03(not included), bemanitools or other tools, additional requirement should be met:
 
