@@ -11,7 +11,7 @@
 3. 实现了必要响应字段的 xrpc 服务器（目前处于公开状态的只有氧无插件）
 4. **该项存疑**：合适的ASIO硬件/软件配置（我个人使用 XONAR AE，但有看到过声称可以录制到声音的 FlexASIO 配置）
 
-spice2x在spice2x-24-08-03版本添加了对 NVENC 的支持，更新后启用 spice2x hook 也可以正常录制，具体请见 https://github.com/spice2x/spice2x.github.io/wiki/IIDX-TDJ-Camera-Hook-and-Play-Recording。 
+spice2x在spice2x-24-08-03版本添加了对 NVENC 的支持，更新后启用 spice2x hook 也可以正常录制，具体请见 [https://github.com/spice2x/spice2x.github.io/wiki/IIDX-TDJ-Camera-Hook-and-Play-Recording](https://github.com/spice2x/spice2x.github.io/wiki/IIDX-Play-Recording)
 
 如果你使用spice2x-24-08-03之前的版本（不包括该版本） / bemanitools等其他工具，则需要额外满足以下条件：
 
