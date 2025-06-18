@@ -11,10 +11,11 @@ import (
 )
 
 var Config struct {
-	ListenAddress        string `toml:"listen_address" comment:"proxy listen address(ip:port), should NOT match upstream_server_url"`
-	UploadServiceAddress string `toml:"upload_service_address" comment:"upload service address(ip:port), where video will be truly uploaded to. \nShould be a domain:port(if needed) or ip:port(if needed) as above, \nbut with real computer ip from command like ipconfig, etc. "`
-	VideoSaveDirectory   string `toml:"video_save_dir" comment:"directory to save uploaded video"`
-	LogPath              string `toml:"log_path" comment:"log file path"`
+	ListenAddress                string `toml:"listen_address" comment:"proxy listen address(ip:port), should NOT match upstream_server_url"`
+	UploadServiceAddress         string `toml:"upload_service_address" comment:"upload service address(ip:port), where video will be truly uploaded to. \nShould be a domain:port(if needed) or ip:port(if needed) as above, \nbut with real computer ip from command like ipconfig, etc. "`
+	VideoSaveDirectory           string `toml:"video_save_dir" comment:"directory to save uploaded video"`
+	LogPath                      string `toml:"log_path" comment:"log file path"`
+	FeatureFileNameAddVideoOwner *bool  `toml:"feature_file_name_add_video_owner" comment:"whether to add video owner in the filename. \nIf true, the filename will be like 'video_owner-something_else.mp4\nExtra development on xrpc server is needed (sending IIDX00music.movieinfo request data to POST /feature/xrpcIIDXMusicMovieInfo)\nFor more info,see server/local/feature/xrpc_iidx_movieinfo.go)'."`
 }
 
 func MustParse() {
@@ -40,6 +41,8 @@ func CheckFile() {
 		Config.UploadServiceAddress = "127.0.0.1:4399"
 		Config.VideoSaveDirectory = "./video"
 		Config.LogPath = "./log.txt"
+		Config.FeatureFileNameAddVideoOwner = new(bool)
+		*Config.FeatureFileNameAddVideoOwner = false
 
 		data, err := toml.Marshal(Config)
 		if err != nil {

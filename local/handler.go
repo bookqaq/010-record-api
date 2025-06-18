@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/bookqaq/010-record-api/config"
 	"github.com/bookqaq/010-record-api/logger"
 	"github.com/bookqaq/010-record-api/utils"
 	"github.com/bookqaq/010-record-api/vsession"
@@ -47,10 +48,12 @@ func MovieSessionNew(w http.ResponseWriter, r *http.Request) {
 // handler POST /movie/sessions/{sid}/videos/{vid}/{operation}
 func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 	session := r.PathValue("sid")
-	vid := r.PathValue("vid")
+	// vid := r.PathValue("vid") vid is not nessary (1.1.0+)
 	operation := r.PathValue("operation")
 
-	key := vsession.GetKey(session, vid)
+	// updated in 1.1.0, use session_id only as key, there are no video upload
+	// parallelization in a single session, so vid is not needed.
+	key := session
 
 	switch operation {
 	case constUploadStatusBegin:
@@ -74,14 +77,28 @@ func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		// try to get the session info first (when Config.FeatureFileNameAddVideoOwner
+		// is enabled, some session info will be set before this http request)
+		res, ok := vsession.MapInfo.Load(key)
+		if !ok {
+			res = vsession.Info{}
+		}
+		info := res.(vsession.Info)
+
+		// update session info with data sent to WebAPI2
+		info.ShopName = body.EA3ShopName
+		info.MD5Sum = body.MD5Sum
+		info.MusicId = body.MusicId
+		info.Timestamp = body.Timestamp
+		// set 1p/2p player name
+		info.VideoOwnerName = body.PlayerNames[0]
+		if len(body.PlayerNames) > 1 {
+			info.VideoOwnerName += "_" + body.PlayerNames[1]
+		}
+
 		// not using all value from request body.
 		// also implement a md5-based video management, with little session info
-		vsession.MapInfo.Store(key, vsession.Info{
-			ShopName:  body.EA3ShopName,
-			MD5Sum:    body.MD5Sum,
-			MusicId:   body.MusicId,
-			Timestamp: body.Timestamp,
-		})
+		vsession.MapInfo.Store(key, info)
 
 		// assign a video upload url path
 		utils.ResponseJSON(w, http.StatusOK, map[string]string{
@@ -138,6 +155,9 @@ func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 	// use keyinfo to generate filename
 	info := res.(vsession.Info)
 	filename := info.ToFileName()
+	if config.Config.FeatureFileNameAddVideoOwner != nil && *config.Config.FeatureFileNameAddVideoOwner {
+		filename = info.ToFileNameWithOwner()
+	}
 	logger.Warning.Println("receive video upload request:", filename)
 
 	written, err := vsession.ReceiveUploadVideo(r.Body, filename)
