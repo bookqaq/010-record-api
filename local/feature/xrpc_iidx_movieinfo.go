@@ -28,7 +28,7 @@ type requestXrpcIIDXMusicMovieInfo struct {
 }
 
 // handler POST /feature/xrpcIIDXMusicMovieInfo
-// receive IIDXxx.movieinfo request data from a xrpc server, and update
+// receive IIDX00Music.movieinfo request data from a xrpc server, and update
 // player info based on session id, including iidxid.
 func FeatureXrpcIIDXMusicMovieInfo(w http.ResponseWriter, r *http.Request) {
 	// standard body read and parse process
@@ -63,7 +63,7 @@ func FeatureXrpcIIDXMusicMovieInfo(w http.ResponseWriter, r *http.Request) {
 	// update session info with video owner's unique id
 	info.VideoOwnerId = body.IIDXID
 
-	// update vession map. IIDXxxmusic.movieinfo is called before the PUT request (before begin-upload
+	// update vession map. IIDX00music.movieinfo is called before the PUT request (before begin-upload
 	// tbh). And this software is not intended to be run as a server for multiple client. Also upload
 	// is single-threaded on one machine. So there will be no race condition. As a result, this update
 	// is safe.
