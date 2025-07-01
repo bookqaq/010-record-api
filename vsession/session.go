@@ -28,5 +28,9 @@ func (info *Info) ToFileName() string {
 func (info *Info) ToFileNameWithOwner() string {
 	// TODO: option to get music name from given music_data.bin
 	localTime := time.Unix(info.Timestamp, 0).Local().Format("20060102-150405")
-	return fmt.Sprintf("%s-%s-%s-%d-%s", info.VideoOwnerId, info.VideoOwnerName, localTime, info.MusicId, info.MD5Sum)
+	videoOwnerId := info.VideoOwnerId
+	if videoOwnerId == "" {
+		videoOwnerId = "null"
+	}
+	return fmt.Sprintf("%s-%s-%s-%d-%s", info.VideoOwnerName, info.VideoOwnerId, localTime, info.MusicId, info.MD5Sum)
 }
