@@ -15,7 +15,7 @@ var Config struct {
 	UploadServiceAddress          string `toml:"upload_service_address" comment:"upload service address(ip:port), where video will be truly uploaded to. \nShould be a domain:port(if needed) or ip:port(if needed) as above, \nbut with real computer ip from command like ipconfig, etc. "`
 	VideoSaveDirectory            string `toml:"video_save_dir" comment:"directory to save uploaded video"`
 	LogPath                       string `toml:"log_path" comment:"log file path"`
-	FeatureXrpcIIDXMusicMovieInfo *bool  `toml:"feature_xrpcIIDXMusicMovieInfo" comment:"whether to add video owner in the filename. \nIf true, the filename will be like 'video_owner-something_else.mp4\nExtra development on xrpc server is needed (sending IIDX00music.movieinfo request data to POST /feature/xrpcIIDXMusicMovieInfo)\nFor more info,see server/local/feature/xrpc_iidx_movieinfo.go)'."`
+	FeatureXrpcIIDXMusicMovieInfo *bool  `toml:"feature_xrpcIIDXMusicMovieInfo" comment:"whether to add video owner in the filename. \nIf true, the filename will be like 'video_owner-something_else.mp4\nExtra development on xrpc server is needed\n\t - sending IIDX00music.movieinfo request data to POST /feature/xrpcIIDXMusicMovieInfo\nFor more info,see server/local/feature/xrpc_iidx_movieinfo.go'."`
 }
 
 func MustParse() {
