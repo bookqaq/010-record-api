@@ -48,12 +48,14 @@ func MovieSessionNew(w http.ResponseWriter, r *http.Request) {
 // handler POST /movie/sessions/{sid}/videos/{vid}/{operation}
 func MovieUploadManagement(w http.ResponseWriter, r *http.Request) {
 	session := r.PathValue("sid")
-	// vid := r.PathValue("vid") vid is not nessary (1.1.0+)
+	vid := r.PathValue("vid") // vid is not nessary because upload is usually single-threaded (1.1.0+)
 	operation := r.PathValue("operation")
 
 	// updated in 1.1.0, use session_id only as key, there are no video upload
 	// parallelization in a single session, so vid is not needed.
 	key := session
+
+	logger.Debug.Printf("MovieUploadManagement session: %s vid: %s operation: %s", session, vid, operation)
 
 	switch operation {
 	case constUploadStatusBegin:
@@ -155,7 +157,9 @@ func MovieUploadContext(w http.ResponseWriter, r *http.Request) {
 	// use keyinfo to generate filename
 	info := res.(vsession.Info)
 	filename := info.ToFileName()
-	if config.Config.FeatureFileNameAddVideoOwner != nil && *config.Config.FeatureFileNameAddVideoOwner {
+
+	// only generate filename with owner info if configuration is enabled
+	if config.Config.FeatureXrpcIIDXMusicMovieInfo != nil && *config.Config.FeatureXrpcIIDXMusicMovieInfo {
 		filename = info.ToFileNameWithOwner()
 	}
 	logger.Warning.Println("receive video upload request:", filename)
