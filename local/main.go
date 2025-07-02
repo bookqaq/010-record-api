@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/bookqaq/010-record-api/config"
+	"github.com/bookqaq/010-record-api/local/feature"
 	"github.com/bookqaq/010-record-api/utils"
 )
 
@@ -26,6 +27,10 @@ func New() http.Handler {
 	// handler for embedded web patcher, refer to MustGetPatcher() for routing details
 	local.Handle(APIPatcher+"/", http.FileServerFS(MustGetPatcher()))
 
+	// handler for feature api, for example receive some xrpc request data(1.1.0+)
+	// refer to github.com/bookqaq/010-record-api/local/feature
+	initRouterGroupFeature(local)
+
 	return local
 }
 
@@ -33,4 +38,8 @@ func initRouterGroupMovie(group *http.ServeMux) {
 	group.HandleFunc(utils.RequestURL(http.MethodGet, APIServerStatus), MovieServerStatus)
 	group.HandleFunc(utils.RequestURL(http.MethodPost, APIMovieSessionNew), MovieSessionNew)
 	group.HandleFunc(utils.RequestURL(http.MethodPost, APIMovieSessionManage), MovieUploadManagement)
+}
+
+func initRouterGroupFeature(group *http.ServeMux) {
+	group.HandleFunc(utils.RequestURL(http.MethodPost, APIFeatureXrpcIIDXMovieInfo), feature.FeatureXrpcIIDXMusicMovieInfo)
 }

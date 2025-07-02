@@ -12,6 +12,7 @@ const (
 	APIPatcher = "/patcher"
 )
 
+// game-related API (WebAPI2)
 const (
 	APIMovie = "/movie"
 
@@ -22,6 +23,17 @@ const (
 	APIMovieSessionManage = APIMovieSession + "/{sid}/videos/{vid}/{operation}"
 )
 
+// dedicated movie upload entry. since you can set video upload address in
+// APIMovieSessionManage, this entry is not considered as a part of WebAPI2
 const (
 	APIDedicatedMovieUpload = "/movie-upload/{key}"
+)
+
+// feature API that exposed to potential users. these might not necessary for
+// singleplay, but useful when running on a shared arcade or you just want to
+// implement your own feature.
+const (
+	APIFeature = "/feature"
+
+	APIFeatureXrpcIIDXMovieInfo = APIFeature + "/xrpcIIDXMovieInfo"
 )
