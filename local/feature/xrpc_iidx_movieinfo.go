@@ -62,7 +62,7 @@ func FeatureXrpcIIDXMusicMovieInfo(w http.ResponseWriter, r *http.Request) {
 			// create a new session info if not exists, because this call happens before begin-upload request.
 			session = vsession.Info{}
 		}
-		info := session.(*vsession.Info)
+		info := session.(vsession.Info)
 
 		// update session info with video owner's unique id
 		info.VideoOwnerId = body.IIDXID
