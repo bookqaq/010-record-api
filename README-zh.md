@@ -90,7 +90,7 @@ go install github.com/bookqaq/010-record-api@latest
 
 #### 其他服务器
 
-自行询问服务器管理
+自行询问服务器管理. 确保服务器的 ListenAddress 的端口设置与服务器返回地址的端口一致，且服务器的 facility.get 接口返回的 region 为 JP.
 
 ### 修改bm2dx.dll
 

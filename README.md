@@ -87,7 +87,7 @@ find a zip named iidx-asphyxia-v1.4.4_a12.zip, remember to do a backup.
 
 #### Other server
 
-Ask your server's owner.
+Ask your server's operator for setting. Make sure to check the port of ListenAddress in config is the same as the one that server sent to the game. Also server's facility.get should send region value "JP" to the game.
 
 ### Config bm2dx.dll
 
