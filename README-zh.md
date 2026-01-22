@@ -9,7 +9,6 @@
 1. Nvidia GPU，需要支持NVENC
 2. LDJ-010的 bm2dx.dll
 3. 实现了必要响应字段的 xrpc 服务器（目前处于公开状态的只有氧无插件）
-4. **该项存疑**：合适的ASIO硬件/软件配置（我个人使用 XONAR AE，但有看到过声称可以录制到声音的 FlexASIO 配置）
 
 spice2x在spice2x-24-08-03版本添加了对 NVENC 的支持，更新后启用 spice2x hook 也可以正常录制，具体请见 https://github.com/spice2x/spice2x.github.io/wiki/IIDX-Play-Recording
 
@@ -17,6 +16,14 @@ spice2x在spice2x-24-08-03版本添加了对 NVENC 的支持，更新后启用 s
 
 1. 一块触摸屏，需要支持1280*720@60Hz，并符合框体的工作模式。确定触摸屏是否能用的步骤详见https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen
    我买的是这个（不是广告）：【闲鱼】https://m.tb.cn/h.5EIeHuV?tk=HW5sWNI4zR2 HU7632 「快来捡漏【触摸 理想 L9 便携显示器便携屏 13.3 寸switch】」
+
+# 关于 Asphyxia CORE (氧无) 1.50e 以及之后版本
+
+Asphyxia CORE 更新了 1.50e。本次更新对“facility.get”进行了修改，将country值从“AX”修改为“JP”。(这都过了几年了，终于愿意改掉乱填的数据了)
+
+如果您**使用氧无作为本地服务器**，并**将氧无更新到1.50e或更高版本**，则无需应用“Disable Server Region Check for Premium Area Functions”。
+
+最新版本可以从氧无仓库release页面下载：https://github.com/asphyxia-core/asphyxia-core.github.io/releases/
 
 # 010-record-api
 
@@ -84,10 +91,6 @@ go install github.com/bookqaq/010-record-api@latest
 
 ![image-20240312165724390](https://github.com/bookqaq/010-record-api/blob/images/image-20240312165724390.png?raw=true)
 
-##### 如何修改插件以支持
-
-自行找一个名字为 iidx-asphyxia-v1.4.4_a12.zip的包，记得备份你使用的原插件
-
 #### 其他服务器
 
 自行询问服务器管理. 确保服务器的 ListenAddress 的端口设置与服务器返回地址的端口一致，且服务器的 facility.get 接口返回的 region 为 JP.
@@ -98,9 +101,11 @@ go install github.com/bookqaq/010-record-api@latest
 
 如果你使用的服务器声明你的框体区域为日区，则不需要本步骤
 
-**注意：仅支持公网有的 010 dll，其他的我没有**
+注意：仅支持公网有的 010 dll，其他的我没有
 
 **注意：”Disable Server Region Check for Premium Area Functions“ 已知仅对氧无有效，使用其他服务器时请跳过本步骤，并询问相关人员设置步骤**
+
+**注意：因为氧无更新，如果你的氧无版本为1.50e或以上，就无需勾选”Disable Server Region Check for Premium Area Functions“**
 
 **注意：如果你的服务器已经支持视频录制功能且不需要本工具，则 “Faster Video Upload“ 选项可能会违反服务器规则，请确认相关规定后使用**
 
