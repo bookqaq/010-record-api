@@ -22,7 +22,7 @@ Asphyxia CORE 1.50e (1.60a too) has been released(2026.01). The update got an im
 
 If you are **using asphyxia as the local ea server** and **update the core to 1.50e or later**, the patch ”Disable Server Region Check for Premium Area Functions“ is now not necessary to enable play recording. 
 
-You can get the latest release from their page: https://github.com/asphyxia-core/asphyxia-core.github.io/releases/
+You can get the latest release from their page: https://github.com/asphyxia-core/core/releases
 
 # 010-record-api
 
