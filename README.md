@@ -14,11 +14,11 @@ spice2x-24-08-03 have been released, which add support for NVENC hook. When upda
 
 If you're using version older than spice2x-24-08-03(not included), bemanitools or other tools, additional requirement should be met:
 
-1. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen
+1. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/asphyxia-core/core/releases
 
 # About Asphyxia CORE 1.50e or later
 
-Asphyxia CORE 1.50e has been released(2026.01). The update got an important change that modifying country value from "AX" to "JP" in ```facility.get```.
+Asphyxia CORE 1.50e (1.60a too) has been released(2026.01). The update got an important change that modifying country value from "AX" to "JP" in ```facility.get```.
 
 If you are **using asphyxia as the local ea server** and **update the core to 1.50e or later**, the patch ”Disable Server Region Check for Premium Area Functions“ is now not necessary to enable play recording. 
 

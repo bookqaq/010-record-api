@@ -19,11 +19,11 @@ spice2x在spice2x-24-08-03版本添加了对 NVENC 的支持，更新后启用 s
 
 # 关于 Asphyxia CORE (氧无) 1.50e 以及之后版本
 
-Asphyxia CORE 更新了 1.50e。本次更新对“facility.get”进行了修改，将country值从“AX”修改为“JP”。(这都过了几年了，终于愿意改掉乱填的数据了)
+Asphyxia CORE 在最近（2026.01）更新了 1.50e（以及1.60a）。本次更新对“facility.get”进行了修改，将country值从“AX”修改为“JP”。(这都过了几年了，终于愿意改掉乱填的数据了)
 
 如果您**使用氧无作为本地服务器**，并**将氧无更新到1.50e或更高版本**，则无需应用“Disable Server Region Check for Premium Area Functions”。
 
-最新版本可以从氧无仓库release页面下载：https://github.com/asphyxia-core/asphyxia-core.github.io/releases/
+最新版本可以从氧无仓库release页面下载：https://github.com/asphyxia-core/core/releases
 
 # 010-record-api
 
