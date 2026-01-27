@@ -14,7 +14,7 @@ spice2x-24-08-03 have been released, which add support for NVENC hook. When upda
 
 If you're using version older than spice2x-24-08-03(not included), bemanitools or other tools, additional requirement should be met:
 
-1. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/asphyxia-core/core/releases
+1. A screen with touch support, support 1280*720@60Hz, function the same as the one on cab. Whether the screen match requirements:  https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen
 
 # About Asphyxia CORE 1.50e or later
 
