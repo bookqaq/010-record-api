@@ -6,7 +6,9 @@
 
 截止目前（2024.08），若想使用该工具激活录画功能，仍需要大量前置条件，请务必满足以下所有条件后再进行尝试：
 
-1. Nvidia GPU，需要支持NVENC
+1. 电脑有满足以下条件的显卡:
+   - NVIDIA GPU + 支持 NVENC
+   - AMD GPU + https://github.com/OffbeatDX/nvencoder-amf
 2. LDJ-010的 bm2dx.dll
 3. 实现了必要响应字段的 xrpc 服务器（目前处于公开状态的只有氧无插件）
 
@@ -69,15 +71,19 @@ go install github.com/bookqaq/010-record-api@latest
 
 请参考 https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen#step-by-step-instructions
 
-### 配置spice2x（如果使用 bemanitools 或 spice2x-24-08-03及以后的版本，应忽视此步骤）
+### 配置 launcher (如果符合以下情况才需要执行)
 
-请注意：该步骤仅使用**spice2x**时，**版本在 spice2x-24-02-13 与 spice2x-24-07-29 之间**时，需要进行以下操作，**其他情况下请<u>跳过</u>该步骤**。
+#### 如果使用 spice2x 版本在 `spice2x-24-02-13` 与 `spice2x-24-07-29` 之间
 
 1. 下载 spice2x-24-02-13 及以后的版本，解压到游戏目录内
 
 2. 打开spicecfg.exe，选择 options 标签栏，在Graphics (common) 中勾选 Disable D3D9 Device Hook（可能会出现差异，具体以 parameter 中包含 nod3d9devhook 字样为准）
 
    ![image-20240312164557472](https://github.com/bookqaq/010-record-api/blob/images/image-20240312164557472.png?raw=true)
+
+#### 如果你是 AMD GPU
+
+按照教程完成它的配置流程 [nvencoder-amf](https://github.com/OffbeatDX/nvencoder-amf). 复制 `nvEncoderAPI64.dll` 到指定文件夹中.
 
 ### 配置xrpc服务器
 

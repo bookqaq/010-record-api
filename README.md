@@ -6,7 +6,9 @@ Only github's README is the latest. Follow repo's instruction instead of the one
 
 Until now（2024.08）, if you want to use the recording feature in game, a bunch of requirements are needed:
 
-1. Nvidia GPU, support NVENC
+1. A Graphics Card that:
+   - Is NVIDIA GPU + supports NVENC
+   - Is AMD GPU + https://github.com/OffbeatDX/nvencoder-amf
 2. LDJ-010 bm2dx.dll
 3. A proper implemented xrpc server（asphyxia for example）
 
@@ -68,13 +70,19 @@ this is just a hint
 
 Refer https://github.com/spice2x/spice2x.github.io/wiki/Configuring-touch-screens-as-subscreen#step-by-step-instructions
 
-### Config spice2x（Ignore this for bemanitools / spice2x-24-08-03 or later）
+### Config launcher (do these only if match)
+
+#### For spice2x between `spice2x-24-02-13` and `spice2x-24-07-29`
 
 1. Download spice2x-24-02-13 or newer than this, extract to your folder
 
 2. open spicecfg.exe, toggle Disable D3D9 Device Hook (in Graphics (common), under options tab) to ON (Option name might change, you could check whether parameter value contain "nod3d9devhook")
 
    ![image-20240312164557472](https://github.com/bookqaq/010-record-api/blob/images/image-20240312164557472.png?raw=true)
+
+#### For those with AMD GPU
+
+Follow guides in [nvencoder-amf](https://github.com/OffbeatDX/nvencoder-amf). Copy the `nvEncoderAPI64.dll` to required directory.
 
 ### Config XRPC Server
 
@@ -125,7 +133,7 @@ Just submit your PRs, I'll check and reply.
    - ~~patch dll~~
    - ~~implement direct file copy from RawPlayVideo(wouldn't implement)~~
 - "password" function in session
-- patch NVENC encoder config (such as bitrate)
+- ~~patch NVENC encoder config (such as bitrate) (already in many patcher available)~~
 - finish the proxy package?
 
 # Won't Fix?
